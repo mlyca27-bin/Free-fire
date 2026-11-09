@@ -31,6 +31,20 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 .pcard.golden{border-color:#f5b301;background:#fff8dc}
 .pcard b{font-size:14px}
 .pcard small{color:#777;display:block;margin-top:4px}
+
+/* ACCOUNT BOX - Jaisa tumhare screenshot me hai */
+.account-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.account-head b{font-size:17px}
+.account-head b span{background:#ff2a00;color:#fff;padding:3px 8px;border-radius:6px;font-size:14px;margin-right:6px}
+.logout{color:#111;font-size:14px;font-weight:700;cursor:pointer;background:none;border:none}
+.account-box{display:none;background:#eef2ff;border-radius:14px;padding:14px;align-items:center;gap:12px}
+.account-box.show{display:flex}
+.avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff2a00,#ff7a00);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;flex-shrink:0;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.account-info b{font-size:16px;display:block}
+.account-info p{font-size:14px;color:#555;margin-top:3px}
+
+/* RESULT STATUS - SIRF PAGE 4 PE */
 .user{border-radius:14px;padding:14px;margin-top:8px;display:none;border:2px solid transparent;text-align:center}
 .user.pending-bg{background:#fff3cd;border-color:#ffca2c}
 .user.success-bg{background:#d1e7dd;border-color:#198754}
@@ -56,7 +70,7 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 </head>
 <body>
 
-<!-- PAGE 1 - LOGIN - YAHAN KOI PENDING NAHI DIKHEGA -->
+<!-- PAGE 1 - LOGIN + ACCOUNT BOX -->
 <div id="page1">
 <div class="top"><b>LADLA <span>TOPUP</span> STORE</b><button class="set" onclick="openSetting()">⚙️ Setting</button></div>
 <div class="hero"><h1>Free Fire Diamonds<br>Fast & Secure Topup</h1><p>Page 1 of 4 - Login with Player ID</p></div>
@@ -64,14 +78,27 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 <div class="card-box">
 <h2><span>01</span> Login - Player ID</h2>
 <input type="number" id="playerId" placeholder="Player ID - Ex: 1380545250" oninput="checkUser()">
-<p id="notFound" style="display:none;color:red;font-size:13px;margin-top:6px;">This ID is not added in Setting.</p>
-<p id="welcomeMsg" style="display:none;color:green;font-size:13px;font-weight:700;margin-top:6px;"></p>
-<button class="btn" style="margin-top:10px;" onclick="goPage2()">LOGIN & CONTINUE →</button>
-<p class="note">Status sirf Last Page - Result me dikhega.</p>
+
+<!-- ACCOUNT BOX - ID LIKHTE HI AAYEGA - Jaisa Screenshot me hai -->
+<div class="account-head" id="accountHead" style="display:none;">
+<b><span>1</span> Account</b>
+<button class="logout" onclick="logoutUser()">⇄ Logout</button>
+</div>
+<div class="account-box" id="accountBox">
+<div class="avatar" id="avatarLetter">L</div>
+<div class="account-info">
+<b id="showName">Username: -</b>
+<p id="showId">Player ID: -</p>
 </div>
 </div>
 
-<!-- PAGE 2 - PACK - YAHAN BHI KOI PENDING NAHI -->
+<p id="notFound" style="display:none;color:red;font-size:13px;margin-top:6px;">This ID is not added in Setting. Setting me pehle Add karo.</p>
+<button class="btn" style="margin-top:12px;" onclick="goPage2()">LOGIN & CONTINUE →</button>
+<p class="note">Username Setting se aayega. Status sirf Last Page - Result me dikhega.</p>
+</div>
+</div>
+
+<!-- PAGE 2 -->
 <div id="page2" class="page2">
 <div class="top"><b>← <span onclick="goPage1()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
 <div class="steps"><div class="step">1 Login</div><div class="step active">2 Pack</div><div class="step">3 Pay</div><div class="step">4 Result</div></div>
@@ -87,7 +114,7 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 </div>
 </div>
 
-<!-- PAGE 3 - PAYMENT - YAHAN BHI KOI PENDING NAHI -->
+<!-- PAGE 3 -->
 <div id="page3" class="page3">
 <div class="top"><b>← <span onclick="goPage2()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
 <div class="steps"><div class="step">1 Login</div><div class="step">2 Pack</div><div class="step active">3 Pay</div><div class="step">4 Result</div></div>
@@ -105,7 +132,7 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 </div>
 </div>
 
-<!-- PAGE 4 - RESULT - SIRF YAHAN PENDING / SUCCESS / FILLED AAYEGA -->
+<!-- PAGE 4 - RESULT - SIRF YAHAN STATUS -->
 <div id="page4" class="page4">
 <div class="top"><b>LADLA STORE</b><b onclick="goPage1()" style="cursor:pointer;">Home</b></div>
 <div class="steps"><div class="step">1 Login</div><div class="step">2 Pack</div><div class="step">3 Pay</div><div class="step active">4 Result</div></div>
@@ -127,16 +154,15 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 <p id="showMsg4" style="font-size:13px;margin-top:8px;font-weight:700;"></p>
 </div>
 <button class="btn" style="margin-top:12px;" onclick="goPage1()">BACK TO HOME</button>
-<p class="note">Status Setting se control hota hai.<br>LADLA Topup Store - Independent Store. Not Garena Official.</p>
 </div>
 </div>
 
 <div class="popup" id="popup">
 <div class="popup-box">
 <h3>⚙️ Admin Setting</h3>
-<p style="font-size:12px;color:#777;margin:6px 0 14px;">Yahan se Status badlo - Jo yahan set karoge, wahi Last Page pe aayega.<br><b>PENDING = Pending, SUCCESS = Successful, FILLED = Filled</b></p>
-<input id="newName" placeholder="Username">
-<input id="newId" placeholder="Player ID">
+<p style="font-size:12px;color:#777;margin:6px 0 14px;">Yahan Username + ID + Status likho.<br>Jo Username yahan likhoge, wahi Page 1 pe Account me dikhega.</p>
+<input id="newName" placeholder="Username - Ex: LADLAGMING">
+<input id="newId" placeholder="Player ID - Ex: 1380545250">
 <select id="newStatus"><option value="PENDING">PENDING</option><option value="SUCCESS">SUCCESS</option><option value="FILLED">FILLED</option></select>
 <button class="btn" onclick="addUser()">+ ADD USER</button>
 <div id="userList" style="margin-top:12px;"></div>
@@ -150,12 +176,10 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 
 <script>
 let users = JSON.parse(localStorage.getItem('ladla_users')) || [{name:'LADLAGMING', id:'1380545250', status:'PENDING'}];
-// NAYE PRICE - $300 SE $2500 TAK - 8 PACKS
 let packs = JSON.parse(localStorage.getItem('ladla_packs')) || [
  {d:'25K', usd:300}, {d:'50K', usd:600}, {d:'75K', usd:900}, {d:'100K', usd:1200},
  {d:'125K', usd:1500}, {d:'150K', usd:1800}, {d:'175K', usd:2100}, {d:'200K', usd:2500}
 ];
-// Agar purane $5 wale price save hain to unko naye se badal do
 if(packs[0] && packs[0].usd < 100){
  packs = [
   {d:'25K', usd:300}, {d:'50K', usd:600}, {d:'75K', usd:900}, {d:'100K', usd:1200},
@@ -185,25 +209,47 @@ function selectCard(el,i){ document.querySelectorAll('.pcard').forEach(x=>x.clas
 function savePacks(){ packs.forEach((p,i)=>{ p.d=document.getElementById('pd'+i).value; p.usd=document.getElementById('pp'+i).value; }); localStorage.setItem('ladla_packs',JSON.stringify(packs)); renderPacks(); alert('Packs Saved!'); }
 function openSetting(){ document.getElementById('popup').style.display='block'; showList(); }
 function closeSetting(){ document.getElementById('popup').style.display='none'; }
-function addUser(){ let n=document.getElementById('newName').value.trim(), i=document.getElementById('newId').value.trim(), s=document.getElementById('newStatus').value; if(!n||!i){alert('Dono likho!');return;} users.push({name:n,id:i,status:s}); localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); alert('Added!'); }
+function addUser(){
+ let n=document.getElementById('newName').value.trim(), i=document.getElementById('newId').value.trim(), s=document.getElementById('newStatus').value;
+ if(!n||!i){alert('Username aur ID dono likho!');return;}
+ // Agar same ID pehle se hai to usko update karo, naya duplicate mat banao
+ let ex=users.findIndex(u=>u.id==i);
+ if(ex>=0){ users[ex]={name:n,id:i,status:s}; } else { users.push({name:n,id:i,status:s}); }
+ localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); alert('Saved! Ab ID likho to Username aayega.');
+ document.getElementById('newName').value=''; document.getElementById('newId').value='';
+}
 function showList(){ let h=''; users.forEach((u,idx)=>{ h+=`<div style="background:#f8f8f8;padding:10px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;"><b>${u.name}</b> - ${u.id} - ${u.status}</span><button onclick="changeStatus(${idx})" style="background:#111;color:#fff;border:none;padding:5px 9px;border-radius:6px;font-weight:700;">Status</button></div>`; }); document.getElementById('userList').innerHTML=h; }
 function changeStatus(idx){ let s=prompt('Status: PENDING / SUCCESS / FILLED', users[idx].status); if(s){ users[idx].status=s.toUpperCase(); localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); checkUser(); } }
 
-// PAGE 1 PE SIRF WELCOME LIKHA AAYEGA, PENDING BOX NAHI
+// PAGE 1 - ACCOUNT BOX - USERNAME SHOW KARNE WALA FUNCTION
 function checkUser(){
  let id=document.getElementById('playerId').value.trim();
- let f=users.find(u=>u.id==id);
+ // Fresh data lo - taake Setting wala naya Username aaye
+ users = JSON.parse(localStorage.getItem('ladla_users')) || users;
+ let f=users.find(u=>String(u.id).trim()==String(id).trim());
  currentUser=f||null;
- let wm=document.getElementById('welcomeMsg');
+ let box=document.getElementById('accountBox');
+ let head=document.getElementById('accountHead');
  let nf=document.getElementById('notFound');
  if(f){
   nf.style.display='none';
-  wm.style.display='block';
-  wm.innerText='Welcome, '+f.name+' - Continue karo';
+  head.style.display='flex';
+  box.classList.add('show');
+  document.getElementById('showName').innerText='Username: '+f.name;
+  document.getElementById('showId').innerText='Player ID: '+f.id;
+  document.getElementById('avatarLetter').innerText=f.name.charAt(0).toUpperCase();
  } else {
-  wm.style.display='none';
+  head.style.display='none';
+  box.classList.remove('show');
   if(id.length>5) nf.style.display='block';
  }
+}
+function logoutUser(){
+ document.getElementById('playerId').value='';
+ document.getElementById('accountBox').classList.remove('show');
+ document.getElementById('accountHead').style.display='none';
+ document.getElementById('notFound').style.display='none';
+ currentUser=null;
 }
 function hideAll(){ ['page1','page2','page3','page4'].forEach(id=>document.getElementById(id).style.display='none'); }
 function goPage1(){ hideAll(); document.getElementById('page1').style.display='block'; }
@@ -219,7 +265,6 @@ function goPage3(){
  document.getElementById('totalUSD').innerText='$'+selPack.usd+' USD';
 }
 function selPay(el){ document.querySelectorAll('.payopt').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
-
 function applyResultStatus(status){
  let c4=document.getElementById('userCard4');
  let badge=document.getElementById('showStatus4');
@@ -248,8 +293,8 @@ function applyResultStatus(status){
 }
 function payNow(){
  let id=document.getElementById('playerId').value;
- // Setting se fresh status lo - taake jo Setting me hai wahi aaye
- let f=users.find(u=>u.id==id);
+ users = JSON.parse(localStorage.getItem('ladla_users')) || users;
+ let f=users.find(u=>String(u.id).trim()==String(id).trim());
  let status = f ? f.status : 'PENDING';
  hideAll(); document.getElementById('page4').style.display='block';
  document.getElementById('orderId').innerText='LADLA-'+Math.floor(100000+Math.random()*900000);

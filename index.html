@@ -19,7 +19,7 @@ body{background:#f4f5f7;color:#111}
 .card-box h2 span{color:#ff2a00}
 input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;color:#111;border-radius:10px;margin-bottom:10px;outline:none;font-size:15px}
 .btn{width:100%;background:#ff2a00;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-height:360px;overflow-y:auto;padding:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-height:380px;overflow-y:auto;padding:2px}
 .pack{background:#fff;border:1.5px solid #e5e5e5;border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer}
 .pack.active{border-color:#ff2a00;background:#fff0ed}
 .pack b{font-size:18px;display:block}
@@ -31,11 +31,11 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 .pcard.golden{border-color:#f5b301;background:#fff8dc}
 .pcard b{font-size:14px}
 .pcard small{color:#777;display:block;margin-top:4px}
-.user{border-radius:14px;padding:14px;margin-top:8px;display:none;border:2px solid transparent}
+.user{border-radius:14px;padding:14px;margin-top:8px;display:none;border:2px solid transparent;text-align:center}
 .user.pending-bg{background:#fff3cd;border-color:#ffca2c}
 .user.success-bg{background:#d1e7dd;border-color:#198754}
 .user.filled-bg{background:#cfe2ff;border-color:#0d6efd}
-.badge{display:inline-block;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:900;margin-top:6px}
+.badge{display:inline-block;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:900;margin-top:6px}
 .badge.pending{background:#ffc107;color:#000}
 .badge.success{background:#198754;color:#fff}
 .badge.filled{background:#0d6efd;color:#fff}
@@ -56,7 +56,7 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 </head>
 <body>
 
-<!-- PAGE 1 - LOGIN -->
+<!-- PAGE 1 - LOGIN - YAHAN KOI PENDING NAHI DIKHEGA -->
 <div id="page1">
 <div class="top"><b>LADLA <span>TOPUP</span> STORE</b><button class="set" onclick="openSetting()">⚙️ Setting</button></div>
 <div class="hero"><h1>Free Fire Diamonds<br>Fast & Secure Topup</h1><p>Page 1 of 4 - Login with Player ID</p></div>
@@ -64,30 +64,20 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 <div class="card-box">
 <h2><span>01</span> Login - Player ID</h2>
 <input type="number" id="playerId" placeholder="Player ID - Ex: 1380545250" oninput="checkUser()">
-<div class="user" id="userCard">
-<b id="showName">-</b>
-<p id="showId" style="font-size:13px;color:#444;margin:4px 0;">-</p>
-<span id="showStatus" class="badge pending">PENDING</span>
-<p id="showMsg" style="font-size:12px;margin-top:8px;font-weight:700;"></p>
-</div>
 <p id="notFound" style="display:none;color:red;font-size:13px;margin-top:6px;">This ID is not added in Setting.</p>
+<p id="welcomeMsg" style="display:none;color:green;font-size:13px;font-weight:700;margin-top:6px;"></p>
 <button class="btn" style="margin-top:10px;" onclick="goPage2()">LOGIN & CONTINUE →</button>
-<p class="note">ID likhne ke baad hi Status dikhega - PENDING / SUCCESS / FILLED</p>
+<p class="note">Status sirf Last Page - Result me dikhega.</p>
 </div>
 </div>
 
-<!-- PAGE 2 - PACK + CARD -->
+<!-- PAGE 2 - PACK - YAHAN BHI KOI PENDING NAHI -->
 <div id="page2" class="page2">
 <div class="top"><b>← <span onclick="goPage1()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
 <div class="steps"><div class="step">1 Login</div><div class="step active">2 Pack</div><div class="step">3 Pay</div><div class="step">4 Result</div></div>
 <div class="card-box">
 <h2><span>02</span> Top-up Amount - 8 Packs</h2>
-<div class="user" id="userCard2" style="display:none;">
-<b id="showName2">-</b><p id="showId2" style="font-size:13px;color:#444;margin:4px 0;">-</p>
-<span id="showStatus2" class="badge pending">PENDING</span>
-<p id="showMsg2" style="font-size:12px;margin-top:8px;font-weight:700;"></p>
-</div>
-<p style="font-size:12px;color:#888;margin:10px 0;">Scroll - 25K to 200K</p>
+<p style="font-size:12px;color:#888;margin:8px 0;">$300 se $2500 tak - Scroll karo</p>
 <div class="grid" id="packGrid"></div>
 </div>
 <div class="card-box">
@@ -97,19 +87,14 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 </div>
 </div>
 
-<!-- PAGE 3 - PAYMENT -->
+<!-- PAGE 3 - PAYMENT - YAHAN BHI KOI PENDING NAHI -->
 <div id="page3" class="page3">
 <div class="top"><b>← <span onclick="goPage2()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
 <div class="steps"><div class="step">1 Login</div><div class="step">2 Pack</div><div class="step active">3 Pay</div><div class="step">4 Result</div></div>
 <div class="card-box">
 <h2><span>💳</span> Payment - Card Only - USD</h2>
-<div class="user" id="userCard3" style="display:none;">
-<b id="showName3">-</b><p id="showId3" style="font-size:13px;color:#444;margin:4px 0;">-</p>
-<span id="showStatus3" class="badge pending">PENDING</span>
-<p id="showMsg3" style="font-size:12px;margin-top:8px;font-weight:700;"></p>
-</div>
 <p id="summary" style="color:#555;font-size:14px;margin:12px 0;"></p>
-<div style="display:flex;justify-content:space-between;background:#f8f8f8;padding:14px;border-radius:12px;margin-bottom:14px;"><span>Total Payment</span><b id="totalUSD" style="color:#ff2a00;font-size:18px;">$0.00 USD</b></div>
+<div style="display:flex;justify-content:space-between;background:#f8f8f8;padding:14px;border-radius:12px;margin-bottom:14px;"><span>Total Payment</span><b id="totalUSD" style="color:#ff2a00;font-size:18px;">$0 USD</b></div>
 <h3 style="font-size:14px;margin-bottom:8px;">Choose Card Network</h3>
 <div class="payopt" onclick="selPay(this)"><span>💳 Visa</span><span>›</span></div>
 <div class="payopt" onclick="selPay(this)"><span>💳 Mastercard</span><span>›</span></div>
@@ -120,15 +105,15 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 </div>
 </div>
 
-<!-- PAGE 4 - RESULT -->
+<!-- PAGE 4 - RESULT - SIRF YAHAN PENDING / SUCCESS / FILLED AAYEGA -->
 <div id="page4" class="page4">
 <div class="top"><b>LADLA STORE</b><b onclick="goPage1()" style="cursor:pointer;">Home</b></div>
 <div class="steps"><div class="step">1 Login</div><div class="step">2 Pack</div><div class="step">3 Pay</div><div class="step active">4 Result</div></div>
 <div class="card-box">
 <div class="result-box">
-<div class="big-tick">✅</div>
-<h2 style="font-size:22px;margin:10px 0 6px;">Payment Successful</h2>
-<p style="color:#666;font-size:14px;">Your order has been created successfully.</p>
+<div class="big-tick" id="resultIcon">⏳</div>
+<h2 id="resultTitle" style="font-size:22px;margin:10px 0 6px;">Order Pending</h2>
+<p id="resultSub" style="color:#666;font-size:14px;">Your order is pending - Please wait.</p>
 </div>
 <div class="row"><span>Order ID</span><b id="orderId">-</b></div>
 <div class="row"><span>Player ID</span><b id="rPlayer">-</b></div>
@@ -137,26 +122,26 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 <div class="row"><span>Card</span><b id="rCard">-</b></div>
 <div class="row"><span>Amount Paid</span><b id="rAmount" style="color:#ff2a00;">-</b></div>
 <div class="row"><span>Transfer Status</span><b id="rStatus">-</b></div>
-<div class="user" id="userCard4" style="display:block;text-align:center;">
+<div class="user" id="userCard4" style="display:block;">
 <span id="showStatus4" class="badge pending">PENDING</span>
 <p id="showMsg4" style="font-size:13px;margin-top:8px;font-weight:700;"></p>
 </div>
 <button class="btn" style="margin-top:12px;" onclick="goPage1()">BACK TO HOME</button>
-<p class="note">LADLA Topup Store - Independent Store. Not Garena Official.</p>
+<p class="note">Status Setting se control hota hai.<br>LADLA Topup Store - Independent Store. Not Garena Official.</p>
 </div>
 </div>
 
 <div class="popup" id="popup">
 <div class="popup-box">
 <h3>⚙️ Admin Setting</h3>
-<p style="font-size:12px;color:#777;margin:6px 0 14px;">Yahan se Status badlo - PENDING / SUCCESS / FILLED</p>
+<p style="font-size:12px;color:#777;margin:6px 0 14px;">Yahan se Status badlo - Jo yahan set karoge, wahi Last Page pe aayega.<br><b>PENDING = Pending, SUCCESS = Successful, FILLED = Filled</b></p>
 <input id="newName" placeholder="Username">
 <input id="newId" placeholder="Player ID">
 <select id="newStatus"><option value="PENDING">PENDING</option><option value="SUCCESS">SUCCESS</option><option value="FILLED">FILLED</option></select>
 <button class="btn" onclick="addUser()">+ ADD USER</button>
 <div id="userList" style="margin-top:12px;"></div>
 <hr style="margin:16px 0;">
-<h4 style="margin-bottom:8px;">Pack Prices (USD)</h4>
+<h4 style="margin-bottom:8px;">Pack Prices (USD) - $300 to $2500</h4>
 <div id="packEdit"></div>
 <button class="btn" style="margin-top:8px;" onclick="savePacks()">SAVE PACKS</button>
 <button class="close" onclick="closeSetting()">Close</button>
@@ -165,10 +150,19 @@ input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;co
 
 <script>
 let users = JSON.parse(localStorage.getItem('ladla_users')) || [{name:'LADLAGMING', id:'1380545250', status:'PENDING'}];
+// NAYE PRICE - $300 SE $2500 TAK - 8 PACKS
 let packs = JSON.parse(localStorage.getItem('ladla_packs')) || [
- {d:'25K', usd:5}, {d:'50K', usd:10}, {d:'75K', usd:15}, {d:'100K', usd:20},
- {d:'125K', usd:25}, {d:'150K', usd:30}, {d:'175K', usd:35}, {d:'200K', usd:40}
+ {d:'25K', usd:300}, {d:'50K', usd:600}, {d:'75K', usd:900}, {d:'100K', usd:1200},
+ {d:'125K', usd:1500}, {d:'150K', usd:1800}, {d:'175K', usd:2100}, {d:'200K', usd:2500}
 ];
+// Agar purane $5 wale price save hain to unko naye se badal do
+if(packs[0] && packs[0].usd < 100){
+ packs = [
+  {d:'25K', usd:300}, {d:'50K', usd:600}, {d:'75K', usd:900}, {d:'100K', usd:1200},
+  {d:'125K', usd:1500}, {d:'150K', usd:1800}, {d:'175K', usd:2100}, {d:'200K', usd:2500}
+ ];
+ localStorage.setItem('ladla_packs', JSON.stringify(packs));
+}
 let cards = [
  {name:'Standard Card', type:'normal'}, {name:'Classic Card', type:'normal'}, {name:'Plus Card', type:'normal'}, {name:'GOLDEN VIP Card', type:'golden'}
 ];
@@ -194,26 +188,21 @@ function closeSetting(){ document.getElementById('popup').style.display='none'; 
 function addUser(){ let n=document.getElementById('newName').value.trim(), i=document.getElementById('newId').value.trim(), s=document.getElementById('newStatus').value; if(!n||!i){alert('Dono likho!');return;} users.push({name:n,id:i,status:s}); localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); alert('Added!'); }
 function showList(){ let h=''; users.forEach((u,idx)=>{ h+=`<div style="background:#f8f8f8;padding:10px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;"><b>${u.name}</b> - ${u.id} - ${u.status}</span><button onclick="changeStatus(${idx})" style="background:#111;color:#fff;border:none;padding:5px 9px;border-radius:6px;font-weight:700;">Status</button></div>`; }); document.getElementById('userList').innerHTML=h; }
 function changeStatus(idx){ let s=prompt('Status: PENDING / SUCCESS / FILLED', users[idx].status); if(s){ users[idx].status=s.toUpperCase(); localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); checkUser(); } }
-function applyStatus(cardEl, badgeEl, msgEl, status){
- cardEl.classList.remove('pending-bg','success-bg','filled-bg');
- if(status=='PENDING'){ badgeEl.innerText='PENDING'; badgeEl.className='badge pending'; cardEl.classList.add('pending-bg'); msgEl.innerText='⏳ Order Pending hai - Thora wait karo'; msgEl.style.color='#856404'; }
- else if(status=='SUCCESS'){ badgeEl.innerText='SUCCESS'; badgeEl.className='badge success'; cardEl.classList.add('success-bg'); msgEl.innerText='✅ Success - Diamonds Transfer Ho Gaye'; msgEl.style.color='#0f5132'; }
- else { badgeEl.innerText='FILLED'; badgeEl.className='badge filled'; cardEl.classList.add('filled-bg'); msgEl.innerText='💎 FILLED - Account me Diamonds Aa Gaye'; msgEl.style.color='#084298'; }
-}
+
+// PAGE 1 PE SIRF WELCOME LIKHA AAYEGA, PENDING BOX NAHI
 function checkUser(){
  let id=document.getElementById('playerId').value.trim();
  let f=users.find(u=>u.id==id);
  currentUser=f||null;
- let card=document.getElementById('userCard');
+ let wm=document.getElementById('welcomeMsg');
+ let nf=document.getElementById('notFound');
  if(f){
-  card.style.display='block';
-  document.getElementById('notFound').style.display='none';
-  document.getElementById('showName').innerText='Username: '+f.name;
-  document.getElementById('showId').innerText='Player ID: '+f.id;
-  applyStatus(card, document.getElementById('showStatus'), document.getElementById('showMsg'), f.status);
+  nf.style.display='none';
+  wm.style.display='block';
+  wm.innerText='Welcome, '+f.name+' - Continue karo';
  } else {
-  card.style.display='none';
-  if(id.length>5) document.getElementById('notFound').style.display='block';
+  wm.style.display='none';
+  if(id.length>5) nf.style.display='block';
  }
 }
 function hideAll(){ ['page1','page2','page3','page4'].forEach(id=>document.getElementById(id).style.display='none'); }
@@ -221,12 +210,6 @@ function goPage1(){ hideAll(); document.getElementById('page1').style.display='b
 function goPage2(){
  let id=document.getElementById('playerId').value; if(!id){alert('Player ID likho!');return;}
  hideAll(); document.getElementById('page2').style.display='block';
- if(currentUser){
-  let c2=document.getElementById('userCard2'); c2.style.display='block';
-  document.getElementById('showName2').innerText='Username: '+currentUser.name;
-  document.getElementById('showId2').innerText='Player ID: '+currentUser.id;
-  applyStatus(c2, document.getElementById('showStatus2'), document.getElementById('showMsg2'), currentUser.status);
- }
 }
 function goPage3(){
  if(!selPack){alert('Pack select karo!');return;} if(!selCardName){alert('Card select karo!');return;}
@@ -234,17 +217,40 @@ function goPage3(){
  let id=document.getElementById('playerId').value;
  document.getElementById('summary').innerText=`Pack: ${selPack.d} Diamonds | Card: ${selCardName} | Player: ${id}`;
  document.getElementById('totalUSD').innerText='$'+selPack.usd+' USD';
- if(currentUser){
-  let c3=document.getElementById('userCard3'); c3.style.display='block';
-  document.getElementById('showName3').innerText='Username: '+currentUser.name;
-  document.getElementById('showId3').innerText='Player ID: '+currentUser.id;
-  applyStatus(c3, document.getElementById('showStatus3'), document.getElementById('showMsg3'), currentUser.status);
- }
 }
 function selPay(el){ document.querySelectorAll('.payopt').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
+
+function applyResultStatus(status){
+ let c4=document.getElementById('userCard4');
+ let badge=document.getElementById('showStatus4');
+ let msg=document.getElementById('showMsg4');
+ let icon=document.getElementById('resultIcon');
+ let title=document.getElementById('resultTitle');
+ let sub=document.getElementById('resultSub');
+ let rStatus=document.getElementById('rStatus');
+ c4.classList.remove('pending-bg','success-bg','filled-bg');
+ if(status=='PENDING'){
+  badge.innerText='PENDING'; badge.className='badge pending'; c4.classList.add('pending-bg');
+  msg.innerText='⏳ Order Pending hai - Thora wait karo'; msg.style.color='#856404';
+  icon.innerText='⏳'; title.innerText='Order Pending'; sub.innerText='Your order is pending - Please wait.';
+  rStatus.innerText='PENDING - Processing'; rStatus.style.color='#856404';
+ } else if(status=='SUCCESS'){
+  badge.innerText='SUCCESS'; badge.className='badge success'; c4.classList.add('success-bg');
+  msg.innerText='✅ Success - Diamonds Transfer Ho Gaye'; msg.style.color='#0f5132';
+  icon.innerText='✅'; title.innerText='Payment Successful'; sub.innerText='Your order has been completed successfully.';
+  rStatus.innerText='SUCCESS - Completed'; rStatus.style.color='green';
+ } else {
+  badge.innerText='FILLED'; badge.className='badge filled'; c4.classList.add('filled-bg');
+  msg.innerText='💎 FILLED - Account me Diamonds Aa Gaye'; msg.style.color='#084298';
+  icon.innerText='💎'; title.innerText='Order Filled'; sub.innerText='Diamonds successfully filled in your account.';
+  rStatus.innerText='FILLED - Diamonds Added'; rStatus.style.color='#0d6efd';
+ }
+}
 function payNow(){
  let id=document.getElementById('playerId').value;
- let f=currentUser || users.find(u=>u.id==id);
+ // Setting se fresh status lo - taake jo Setting me hai wahi aaye
+ let f=users.find(u=>u.id==id);
+ let status = f ? f.status : 'PENDING';
  hideAll(); document.getElementById('page4').style.display='block';
  document.getElementById('orderId').innerText='LADLA-'+Math.floor(100000+Math.random()*900000);
  document.getElementById('rPlayer').innerText=id;
@@ -252,11 +258,7 @@ function payNow(){
  document.getElementById('rPack').innerText=selPack.d+' Diamonds';
  document.getElementById('rCard').innerText=selCardName;
  document.getElementById('rAmount').innerText='$'+selPack.usd+' USD';
- if(f){
-  document.getElementById('rStatus').innerText=f.status+' - Processing';
-  let c4=document.getElementById('userCard4');
-  applyStatus(c4, document.getElementById('showStatus4'), document.getElementById('showMsg4'), f.status);
- }
+ applyResultStatus(status);
 }
 renderPacks(); renderCards(); showList();
 </script>

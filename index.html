@@ -3,15 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LADLA GAME STORE - All Games</title>
+<title>LADLA GAME STORE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
 body{background:radial-gradient(800px 400px at 10% 0%, #3b0f3a 0%, transparent 60%), radial-gradient(700px 400px at 90% 10%, #ff2a6d 0%, transparent 50%), radial-gradient(600px 500px at 50% 100%, #2a0a4a 0%, transparent 60%), #0b0b10;color:#fff;min-height:100vh}
 .top{position:sticky;top:0;z-index:20;background:rgba(11,11,16,.88);backdrop-filter:blur(15px);padding:13px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.1)}
-.top b{font-size:19px}.top b span{background:linear-gradient(90deg,#ff2a6d,#ff7a00);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.top button{background:#fff;color:#000;border:none;padding:8px 14px;border-radius:999px;font-weight:800;cursor:pointer}
-.hero{margin:14px;border-radius:20px;padding:20px;background:linear-gradient(135deg,#ff2a6d,#7a2aff,#ff7a00);box-shadow:0 15px 40px rgba(255,42,109,.4)}
-.hero h1{font-size:25px;line-height:1.2}.hero p{font-size:13px;opacity:.9;margin-top:6px}
+.top b{font-size:19px;cursor:pointer;user-select:none}.top b span{background:linear-gradient(90deg,#ff2a6d,#ff7a00);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.top .live{font-size:11px;background:#22c55e;color:#000;padding:5px 10px;border-radius:999px;font-weight:900}
+.banner{margin:14px;border-radius:20px;overflow:hidden;position:relative;height:170px;background:linear-gradient(135deg,#ff2a6d,#7a2aff,#ff7a00);display:flex;align-items:center;justify-content:center}
+.banner img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:none}
+.banner img.show{display:block}
+.banner-txt{position:relative;z-index:2;text-align:center;padding:14px;text-shadow:0 2px 10px #000}
+.banner-txt h1{font-size:24px}.banner-txt p{font-size:13px;opacity:.95;margin-top:5px}
+.banner-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:6px;justify-content:center;z-index:3}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5)}.dot.active{background:#fff;width:22px;border-radius:999px}
 .search{margin:0 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:13px 16px;border-radius:999px;color:#fff;outline:none;width:calc(100% - 28px)}
 .search::placeholder{color:#aaa}
 .tabs{display:flex;gap:8px;margin:14px;overflow-x:auto;padding-bottom:4px}
@@ -20,50 +25,61 @@ body{background:radial-gradient(800px 400px at 10% 0%, #3b0f3a 0%, transparent 6
 .sec{margin:14px}.sec h2{font-size:17px;margin-bottom:10px}.sec h2 span{color:#ff7a00}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:700px){.grid{grid-template-columns:1fr 1fr 1fr 1fr}}
-.gcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:14px;backdrop-filter:blur(15px);cursor:pointer}
+.gcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:14px;cursor:pointer}
 .gcard:hover{transform:translateY(-4px);border-color:#ff2a6d}
-.gcard .img{height:90px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;margin-bottom:10px;text-align:center;line-height:1.1}
+.gcard .img{height:90px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;margin-bottom:10px;overflow:hidden;position:relative}
+.gcard .img .big{font-size:38px}.gcard .img img{width:100%;height:100%;object-fit:cover}
+.gcard .img .lbl{font-size:11px;font-weight:900;background:rgba(0,0,0,.4);padding:3px 10px;border-radius:999px;position:absolute;margin-top:62px}
 .g1{background:linear-gradient(135deg,#ff2a6d,#ff7a00)}.g2{background:linear-gradient(135deg,#ff8a00,#ff2a00)}.g3{background:linear-gradient(135deg,#7a2aff,#00c2ff)}.g4{background:linear-gradient(135deg,#00c2a8,#a3e635)}.g5{background:linear-gradient(135deg,#ff00c8,#7a2aff)}.g6{background:linear-gradient(135deg,#00e5ff,#7a2aff)}.g7{background:linear-gradient(135deg,#ffb400,#ff2a6d)}.g8{background:linear-gradient(135deg,#22c55e,#00e5ff)}.g9{background:linear-gradient(135deg,#f43f5e,#f97316)}.g10{background:linear-gradient(135deg,#8b5cf6,#ec4899)}.g11{background:linear-gradient(135deg,#06b6d4,#3b82f6)}.g12{background:linear-gradient(135deg,#eab308,#ef4444)}.g13{background:linear-gradient(135deg,#10b981,#84cc16)}.g14{background:linear-gradient(135deg,#111,#ff2a6d)}
 .gcard b{font-size:14px;display:block}.gcard p{font-size:12px;color:#b9b9c2;margin:4px 0}.gcard span{font-size:13px;font-weight:900;color:#ffd1e0}
 .badge{display:inline-block;padding:4px 9px;border-radius:999px;font-size:10px;font-weight:900;background:#ff2a6d;margin-bottom:6px}
 .page{display:none}.page.show{display:block}
-.pack{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px 12px;text-align:center;cursor:pointer}
-.pack.active{border-color:#ff2a6d;background:rgba(255,42,109,.15)}
+.pack{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px 10px;text-align:center;cursor:pointer}
+.pack.active{border-color:#ff2a6d;background:rgba(255,42,109,.15);transform:scale(1.03)}
+.pack .p-icon{width:64px;height:64px;border-radius:14px;margin:auto;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:36px;background:rgba(0,0,0,.25)}
+.pack .p-icon img{width:100%;height:100%;object-fit:cover}
+.pack .p-type{font-size:10px;font-weight:900;background:rgba(0,0,0,.3);padding:3px 8px;border-radius:999px;display:inline-block;margin:5px 0}
 .pack b{font-size:16px;display:block}.pack small{color:#aaa}.pack span{color:#ff7a00;font-weight:900;display:block;margin-top:6px}
 input,select{width:100%;padding:13px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:#fff;outline:none;margin-bottom:10px}
 select option{color:#000}
-.btn{width:100%;background:linear-gradient(90deg,#ff2a6d,#ff7a00);color:#fff;border:none;padding:14px;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer;box-shadow:0 8px 25px rgba(255,42,109,.4)}
-.cardbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px;margin:14px;backdrop-filter:blur(12px)}
-.row{display:flex;justify-content:space-between;background:rgba(255,255,255,.06);padding:12px;border-radius:10px;margin-bottom:8px;font-size:14px;gap:8px}
+.btn{width:100%;background:linear-gradient(90deg,#ff2a6d,#ff7a00);color:#fff;border:none;padding:14px;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer}
+.cardbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px;margin:14px}
+.row{display:flex;justify-content:space-between;background:rgba(255,255,255,.06);padding:12px;border-radius:10px;margin-bottom:8px;font-size:14px;gap:8px;align-items:center}
 .sim{font-size:11px;color:#888;text-align:center;padding:8px}
 .lbl{font-size:13px;font-weight:700;margin:12px 0 5px;display:block}
+.upload-box{border:2px dashed #ff2a6d;border-radius:14px;padding:14px;text-align:center;margin:10px 0;background:rgba(255,42,109,.08)}
+.banner-thumb{width:70px;height:45px;object-fit:cover;border-radius:8px;border:1px solid #fff;margin:4px}
+.pack-edit{display:flex;gap:6px;align-items:center;margin-bottom:8px;background:rgba(255,255,255,.05);padding:8px;border-radius:10px}
+.pack-edit input{margin:0}
 </style>
 </head>
 <body>
 <p class="sim">LADLA GAME STORE - Demo Store</p>
 
-<!-- HOME -->
 <div id="home" class="page show">
-<div class="top"><b>LADLA <span>GAME STORE</span></b><button onclick="openSetting()">⚙️ Setting</button></div>
-<div class="hero"><h1>🔥 Trending Topups<br>Fast • Secure • Instant</h1><p>14 Games • Sab Diamond / UC / CP Ek Jagah • Har Game Ki Alag Setting</p></div>
-<input class="search" placeholder="🔍 Search... PUBG, BGMI, Free Fire, TikTok..." oninput="filterGames(this.value)">
+<!-- YAHAN KOI SETTING BUTTON NAHI - SIRF LOGO + LIVE -->
+<div class="top"><b onclick="secretTap()">LADLA <span>GAME STORE</span></b><span class="live">● LIVE</span></div>
+<div class="banner" id="mainBanner"><div class="banner-txt"><h1>🔥 Trending Topups<br>Fast • Secure • Instant</h1><p>25K - 200K Packs • Sab Games Ek Jagah</p></div><div class="banner-dots" id="mainDots"></div></div>
+<input class="search" placeholder="🔍 Search... PUBG, BGMI, Free Fire..." oninput="filterGames(this.value)">
 <div class="tabs" id="catTabs">
 <div class="tab active" onclick="filterCat(this,'all')">All</div>
 <div class="tab" onclick="filterCat(this,'trending')">🔥 Trending</div>
 <div class="tab" onclick="filterCat(this,'battle')">Battle Royale</div>
-<div class="tab" onclick="filterCat(this,'diamond')">Diamonds</div>
-<div class="tab" onclick="filterCat(this,'coins')">Coins / Other</div>
+<div class="tab" onclick="filterCat(this,'diamond')">💎 Diamonds</div>
+<div class="tab" onclick="filterCat(this,'coins')">🪙 Coins</div>
 </div>
 <div class="sec"><h2>🔥 <span>Trending Me Hai</span></h2><div class="grid" id="trendGrid"></div></div>
-<div class="sec"><h2>🎮 <span>Sab Games</span> - Click Karo, Alag Page Khulega</h2><div class="grid" id="allGrid"></div></div>
+<div class="sec"><h2>🎮 <span>Sab Games</span></h2><div class="grid" id="allGrid"></div></div>
 </div>
 
-<!-- GAME PAGE -->
 <div id="gamePage" class="page">
-<div class="top"><b>← <span onclick="goHome()" style="cursor:pointer;">Back</span></b><b id="gameTitle">GAME</b><button onclick="openGameSetting()">⚙️ Is Game Ki Setting</button></div>
+<!-- GAME PAGE PE BHI KOI SETTING BUTTON NAHI - SIRF BACK + GAME NAME -->
+<div class="top"><b onclick="goHome()">← Back</b><b id="gameTitle" onclick="secretTap()">GAME</b><span class="live">● LIVE</span></div>
+<div class="banner" id="gameBanner"><div class="banner-txt"><h1 id="gameBannerTitle">GAME</h1><p id="gameBannerSub">25K - 200K Packs</p></div><div class="banner-dots" id="gameDots"></div></div>
 <div class="cardbox">
 <h2 id="gameHead" style="font-size:20px;">Game</h2>
 <p id="gameDesc" style="color:#aaa;font-size:13px;margin:6px 0 12px;"></p>
+<div style="display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.06);padding:12px;border-radius:12px;margin-bottom:10px;"><span id="gameIconBig" style="width:56px;height:56px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:34px;background:rgba(0,0,0,.3);flex-shrink:0;"></span><div><b id="gameIconTxt">-</b><p style="font-size:12px;color:#aaa;">Instant Delivery • Secure</p></div></div>
 <label class="lbl">Player ID / Username</label>
 <input id="playerId" placeholder="Player ID likho">
 <div class="grid" id="packGrid" style="margin-top:10px;"></div>
@@ -71,102 +87,105 @@ select option{color:#000}
 </div>
 </div>
 
-<!-- CHECKOUT -->
 <div id="checkout" class="page">
-<div class="top"><b>← <span onclick="goGame()" style="cursor:pointer;">Back</span></b><b>Checkout</b></div>
-<div class="cardbox">
-<h2>🧾 Order Summary</h2>
-<div id="summaryBox" style="margin:12px 0;"></div>
-<label class="lbl">Card Ka Naam - Tum Khud Likho</label>
-<input id="cardNameInput" placeholder="Ex: Mera Card / VIP Card">
-<p style="font-size:12px;color:#aaa;margin-bottom:12px;">Sirf Naam aayega, koi number nahi.</p>
-<button class="btn" onclick="placeOrder()">PAY NOW →</button>
-</div>
+<div class="top"><b onclick="goGame()">← Back</b><b>Checkout</b></div>
+<div class="cardbox"><h2>🧾 Order Summary</h2><div id="summaryBox" style="margin:12px 0;"></div>
+<label class="lbl">Card Ka Naam</label><input id="cardNameInput" placeholder="Ex: Mera Card / VIP Card">
+<button class="btn" onclick="placeOrder()">PAY NOW →</button></div>
 </div>
 
-<!-- RESULT -->
 <div id="resultPage" class="page">
 <div class="top"><b>LADLA STORE</b><b onclick="goHome()" style="cursor:pointer;">Home</b></div>
-<div class="cardbox" style="text-align:center;">
-<div style="font-size:60px;" id="resIcon">⏳</div>
-<h2 id="resTitle">Order Pending</h2>
-<p style="color:#aaa;font-size:13px;">Order ID</p><b id="orderId">-</b>
-<p id="resText" style="color:#ff7a00;font-weight:800;margin-top:10px;">-</p>
-<div id="resDetails" style="margin-top:14px;text-align:left;"></div>
-<button class="btn" style="margin-top:14px;" onclick="goHome()">Back To Home</button>
+<div class="cardbox" style="text-align:center;"><div id="resIcon" style="width:80px;height:80px;margin:auto;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:50px;background:rgba(255,255,255,.07);">⏳</div><h2 id="resTitle" style="margin-top:10px;">Order Pending</h2><p style="color:#aaa;font-size:13px;">Order ID</p><b id="orderId">-</b><p id="resText" style="color:#ff7a00;font-weight:800;margin-top:10px;">-</p><div id="resDetails" style="margin-top:14px;text-align:left;"></div><button class="btn" style="margin-top:14px;" onclick="goHome()">Back To Home</button></div>
+</div>
+
+<!-- SECRET ADMIN LOGIN - SIRF TUMKO PATA HAI -->
+<div id="adminLogin" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;padding:20px;">
+<div style="background:#17171f;border-radius:18px;padding:20px;max-width:350px;margin:80px auto;border:1px solid rgba(255,255,255,.15);text-align:center;">
+<h3>🔐 Admin Login</h3><p style="font-size:12px;color:#aaa;margin:8px 0;">Sirf Owner Ke Liye</p>
+<input id="adminPin" type="password" placeholder="PIN likho - 1234" style="text-align:center;font-size:20px;letter-spacing:5px;">
+<button class="btn" onclick="checkPin()">OPEN SETTING</button>
+<button class="btn" style="background:#333;margin-top:8px;" onclick="closeAdminLogin()">Cancel</button>
+<p style="font-size:11px;color:#666;margin-top:10px;">PIN Setting me change kar sakte ho</p>
 </div>
 </div>
 
-<!-- MAIN SETTING - SAB GAMES -->
+<!-- SETTING - AB SIRF PIN KE BAAD KHULEGI -->
 <div id="setting" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99;padding:16px;overflow:auto;">
 <div style="background:#17171f;border-radius:18px;padding:16px;max-width:450px;margin:auto;border:1px solid rgba(255,255,255,.15);">
-<h3>⚙️ Main Setting - Har Game Ki Alag Setting</h3>
-<label class="lbl">1. Game Select Karo - Usi Ki Setting Khulegi:</label>
-<select id="setGameSelect" onchange="loadGameSetting()"></select>
-<label class="lbl">2. Is Game Ke Packs - Price Change Karo:</label>
-<div id="setPackEdit"></div>
-<button class="btn" onclick="saveGamePacks()">SAVE IS GAME KE PACKS</button>
-<label class="lbl">3. Is Game Ka Status Text:</label>
-<input id="setTxtPending" placeholder="PENDING wala text">
-<input id="setTxtSuccess" placeholder="SUCCESS wala text">
-<input id="setTxtFilled" placeholder="FILLED wala text">
-<button class="btn" onclick="saveGameTexts()">SAVE IS GAME KA TEXT</button>
-<hr style="margin:16px 0;border-color:#333;">
-<h4>👤 User Status - Is Game Ke Liye</h4>
-<input id="setName" placeholder="Username">
-<input id="setId" placeholder="Player ID">
-<select id="setStatus"><option>PENDING</option><option>SUCCESS</option><option>FILLED</option></select>
-<button class="btn" onclick="saveUser()">SAVE USER - IS GAME KE LIYE</button>
-<div id="userList" style="margin-top:12px;"></div>
-<button class="btn" style="margin-top:10px;background:#333;" onclick="closeSetting()">Close</button>
+<h3>⚙️ Admin Setting - Hidden</h3>
+<p style="font-size:12px;color:#22c55e;">✓ Admin Mode ON - Customer ko ye nazar nahi aata</p>
+<label class="lbl">Admin PIN Change Karo:</label><input id="newPin" placeholder="Naya PIN - Ex: 9999"><button class="btn" style="background:#333;" onclick="changePin()">CHANGE PIN</button>
+<label class="lbl">Game Select Karo:</label><select id="setGameSelect" onchange="loadGameSetting()"></select>
+<label class="lbl">🎮 IS GAME Ka Icon:</label><div class="upload-box">📸 Game Icon Upload Karo<br><input type="file" accept="image/*" onchange="uploadGameIcon(this)" style="margin-top:8px;"></div><div id="gameIconPreview" style="text-align:center;"></div><button class="btn" style="background:#333;" onclick="clearGameIcon()">❌ Game Icon Delete</button>
+<label class="lbl">🖼️ MAIN Banner:</label><div class="upload-box">📸 Main Banner Upload<br><input type="file" accept="image/*" onchange="uploadBanner('main',this)" style="margin-top:8px;"></div><div id="mainBannerList"></div>
+<label class="lbl">🖼️ IS GAME Ka Banner:</label><div class="upload-box">📸 Is Game Ka Banner Upload<br><input type="file" accept="image/*" onchange="uploadBanner('game',this)" style="margin-top:8px;"></div><div id="gameBannerList"></div>
+<label class="lbl">📦 Packs - 25K Se 200K:</label><div id="setPackEdit"></div><button class="btn" onclick="addNewPack()">+ ADD NEW PACK</button><button class="btn" style="margin-top:8px;" onclick="saveGamePacks()">SAVE PACKS</button>
+<label class="lbl">✍️ Text:</label><input id="setTxtPending" placeholder="PENDING wala text"><input id="setTxtSuccess" placeholder="SUCCESS wala text"><input id="setTxtFilled" placeholder="FILLED wala text"><button class="btn" onclick="saveGameTexts()">SAVE TEXT</button>
+<hr style="margin:16px 0;border-color:#333;"><h4>👤 User Status</h4><input id="setName" placeholder="Username"><input id="setId" placeholder="Player ID"><select id="setStatus"><option>PENDING</option><option>SUCCESS</option><option>FILLED</option></select><button class="btn" onclick="saveUser()">SAVE USER</button><div id="userList" style="margin-top:12px;"></div><button class="btn" style="margin-top:10px;background:#333;" onclick="closeSetting()">Close - Wapas Store Pe</button>
 </div>
 </div>
 
 <script>
 let games=[
-{id:'pubg', name:'PUBG Mobile UC', cat:'battle', trend:true, img:'PUBG UC', cls:'g1', desc:'UC • 5200+ sold', price:'From $0.99', badge:'🔥 HOT'},
-{id:'bgmi', name:'BGMI UC', cat:'battle', trend:true, img:'BGMI UC', cls:'g2', desc:'UC • 4100+ sold', price:'From $0.99', badge:'🔥 HOT'},
-{id:'ff', name:'Free Fire Diamonds', cat:'diamond', trend:true, img:'FF 💎', cls:'g2', desc:'Diamonds • 8100+ sold', price:'From $1.00', badge:'🔥 HOT'},
-{id:'ffmax', name:'Free Fire MAX Diamonds', cat:'diamond', trend:true, img:'FF MAX', cls:'g9', desc:'Diamonds • 3600+ sold', price:'From $1.00', badge:'TRENDING'},
-{id:'cod', name:'COD Mobile CP', cat:'battle', trend:true, img:'COD CP', cls:'g3', desc:'CP • 2100+ sold', price:'From $1.50', badge:'TRENDING'},
-{id:'valorant', name:'Valorant Points', cat:'coins', trend:false, img:'VAL VP', cls:'g4', desc:'VP • 1200+ sold', price:'From $4.99', badge:''},
-{id:'fortnite', name:'Fortnite V-Bucks', cat:'battle', trend:false, img:'FN VB', cls:'g5', desc:'V-Bucks • 980+ sold', price:'From $7.99', badge:''},
-{id:'mlbb', name:'Mobile Legends Diamonds', cat:'diamond', trend:true, img:'ML 💎', cls:'g6', desc:'Diamonds • 3400+ sold', price:'From $0.99', badge:'TRENDING'},
-{id:'coc', name:'Clash of Clans Gold Pass', cat:'coins', trend:true, img:'COC', cls:'g7', desc:'Gold Pass • 1900+ sold', price:'From $4.99', badge:'TRENDING'},
-{id:'cr', name:'Clash Royale Gems', cat:'diamond', trend:false, img:'CR 💎', cls:'g8', desc:'Gems • 1100+ sold', price:'From $1.99', badge:''},
-{id:'brawl', name:'Brawl Stars Gems', cat:'diamond', trend:false, img:'BS 💎', cls:'g10', desc:'Gems • 1400+ sold', price:'From $1.99', badge:''},
-{id:'genshin', name:'Genshin Genesis', cat:'coins', trend:false, img:'GEN', cls:'g11', desc:'Genesis • 760+ sold', price:'From $0.99', badge:''},
-{id:'roblox', name:'Roblox Robux', cat:'coins', trend:false, img:'RBX', cls:'g12', desc:'Robux • 1500+ sold', price:'From $4.99', badge:''},
-{id:'tiktok', name:'TikTok Coins', cat:'coins', trend:true, img:'TIKTOK', cls:'g14', desc:'Coins • 6800+ sold', price:'From $0.99', badge:'🔥 HOT'},
+{id:'pubg', name:'PUBG Mobile UC', cat:'battle', trend:true, icon:'🪙', iconName:'UC - Unknown Cash', cls:'g1', desc:'UC • 5200+ sold', price:'From 25K', badge:'🔥 HOT'},
+{id:'bgmi', name:'BGMI UC', cat:'battle', trend:true, icon:'🪙', iconName:'UC - Unknown Cash', cls:'g2', desc:'UC • 4100+ sold', price:'From 25K', badge:'🔥 HOT'},
+{id:'ff', name:'Free Fire Diamonds', cat:'diamond', trend:true, icon:'💎', iconName:'Diamonds', cls:'g2', desc:'Diamonds • 8100+ sold', price:'From 25K', badge:'🔥 HOT'},
+{id:'ffmax', name:'Free Fire MAX Diamonds', cat:'diamond', trend:true, icon:'💎', iconName:'Diamonds', cls:'g9', desc:'Diamonds • 3600+ sold', price:'From 25K', badge:'TRENDING'},
+{id:'cod', name:'COD Mobile CP', cat:'battle', trend:true, icon:'🪖', iconName:'CP - COD Points', cls:'g3', desc:'CP • 2100+ sold', price:'From 25K', badge:'TRENDING'},
+{id:'valorant', name:'Valorant Points', cat:'coins', trend:false, icon:'🔴', iconName:'VP - Valorant Points', cls:'g4', desc:'VP • 1200+ sold', price:'From 25K', badge:''},
+{id:'fortnite', name:'Fortnite V-Bucks', cat:'battle', trend:false, icon:'🟦', iconName:'V-Bucks', cls:'g5', desc:'V-Bucks • 980+ sold', price:'From 25K', badge:''},
+{id:'mlbb', name:'Mobile Legends Diamonds', cat:'diamond', trend:true, icon:'💎', iconName:'Diamonds', cls:'g6', desc:'Diamonds • 3400+ sold', price:'From 25K', badge:'TRENDING'},
+{id:'coc', name:'Clash of Clans Gold Pass', cat:'coins', trend:true, icon:'🏆', iconName:'Gold Pass', cls:'g7', desc:'Gold Pass • 1900+ sold', price:'From 25K', badge:'TRENDING'},
+{id:'cr', name:'Clash Royale Gems', cat:'diamond', trend:false, icon:'💜', iconName:'Gems', cls:'g8', desc:'Gems • 1100+ sold', price:'From 25K', badge:''},
+{id:'brawl', name:'Brawl Stars Gems', cat:'diamond', trend:false, icon:'💎', iconName:'Gems', cls:'g10', desc:'Gems • 1400+ sold', price:'From 25K', badge:''},
+{id:'genshin', name:'Genshin Genesis', cat:'coins', trend:false, icon:'✨', iconName:'Genesis Crystals', cls:'g11', desc:'Genesis • 760+ sold', price:'From 25K', badge:''},
+{id:'roblox', name:'Roblox Robux', cat:'coins', trend:false, icon:'🟫', iconName:'Robux', cls:'g12', desc:'Robux • 1500+ sold', price:'From 25K', badge:''},
+{id:'tiktok', name:'TikTok Coins', cat:'coins', trend:true, icon:'🪙', iconName:'TikTok Coins', cls:'g14', desc:'Coins • 6800+ sold', price:'From 25K', badge:'🔥 HOT'},
 ];
-let defaultPacks={
-pubg:[{n:'60 UC',p:0.99},{n:'325 UC',p:4.99},{n:'660 UC',p:9.99},{n:'1800 UC',p:24.99},{n:'3850 UC',p:49.99},{n:'8100 UC',p:99.99}],
-bgmi:[{n:'60 UC',p:0.99},{n:'325 UC',p:4.99},{n:'660 UC',p:9.99},{n:'1800 UC',p:24.99}],
-ff:[{n:'100 Diamonds',p:1},{n:'310 Diamonds',p:3},{n:'520 Diamonds',p:5},{n:'1060 Diamonds',p:10},{n:'2180 Diamonds',p:20},{n:'5600 Diamonds',p:50}],
-ffmax:[{n:'100 Diamonds',p:1},{n:'310 Diamonds',p:3},{n:'520 Diamonds',p:5},{n:'1060 Diamonds',p:10},{n:'2180 Diamonds',p:20}],
-cod:[{n:'80 CP',p:1.5},{n:'400 CP',p:5},{n:'800 CP',p:10},{n:'2000 CP',p:25}],
-valorant:[{n:'475 VP',p:4.99},{n:'1000 VP',p:9.99},{n:'2050 VP',p:19.99}],
-fortnite:[{n:'1000 V-Bucks',p:7.99},{n:'2800 V-Bucks',p:19.99}],
-mlbb:[{n:'50 Diamonds',p:0.99},{n:'250 Diamonds',p:4.99},{n:'500 Diamonds',p:9.99},{n:'1000 Diamonds',p:19.99}],
-coc:[{n:'Gold Pass',p:4.99},{n:'Gold Pass + 1000 Gems',p:9.99}],
-cr:[{n:'80 Gems',p:1.99},{n:'500 Gems',p:9.99},{n:'1200 Gems',p:19.99}],
-brawl:[{n:'30 Gems',p:1.99},{n:'80 Gems',p:4.99},{n:'170 Gems',p:9.99}],
-genshin:[{n:'60 Genesis',p:0.99},{n:'300 Genesis',p:4.99},{n:'980 Genesis',p:14.99}],
-roblox:[{n:'400 Robux',p:4.99},{n:'800 Robux',p:9.99},{n:'2000 Robux',p:24.99}],
-tiktok:[{n:'70 Coins',p:0.99},{n:'350 Coins',p:4.99},{n:'700 Coins',p:9.99},{n:'1400 Coins',p:19.99},{n:'3500 Coins',p:49.99}],
-};
-let savedPacks=JSON.parse(localStorage.getItem('ladla_all_packs'))||{};
-let savedTexts=JSON.parse(localStorage.getItem('ladla_all_texts'))||{};
-let users=JSON.parse(localStorage.getItem('ladla_all_users'))||[];
-function getPacks(id){ return savedPacks[id]||defaultPacks[id]; }
+let basePacks=[{n:'25K',p:300},{n:'50K',p:600},{n:'75K',p:900},{n:'100K',p:1200},{n:'125K',p:1500},{n:'150K',p:1800},{n:'175K',p:2100},{n:'200K',p:2500}];
+let savedPacks=JSON.parse(localStorage.getItem('ladla_all_packs2'))||{};
+let savedTexts=JSON.parse(localStorage.getItem('ladla_all_texts2'))||{};
+let savedBanners=JSON.parse(localStorage.getItem('ladla_banners'))||{main:[], games:{}};
+let savedIcons=JSON.parse(localStorage.getItem('ladla_icons'))||{games:{}, packs:{}};
+let users=JSON.parse(localStorage.getItem('ladla_all_users2'))||[];
+let adminPin = localStorage.getItem('ladla_pin') || '1234';
+let tapCount=0, tapTimer=null;
+function getPacks(id){ return savedPacks[id]||JSON.parse(JSON.stringify(basePacks)); }
 function getTexts(id){ return savedTexts[id]||{PENDING:'Order Pending - Thora Wait Karo', SUCCESS:'Order Successful - Check Your Game Account', FILLED:'Order Filled - Added In Your Account'}; }
-let curGame=null, curPack=null;
+function getBanners(type, gid){ if(type=='main') return savedBanners.main||[]; return (savedBanners.games&&savedBanners.games[gid])||[]; }
+function getGameIcon(g){ return (savedIcons.games&&savedIcons.games[g.id])||null; }
+function getPackIcon(gid, idx){ return (savedIcons.packs&&savedIcons.packs[gid+'_'+idx])||null; }
+let curGame=null, curPack=null, curPackIdx=0;
+// SECRET TAP - LOGO PE 5 BAAR TAP KARO
+function secretTap(){
+ tapCount++;
+ if(tapTimer) clearTimeout(tapTimer);
+ tapTimer=setTimeout(()=>{ tapCount=0; },1500);
+ if(tapCount>=5){ tapCount=0; document.getElementById('adminLogin').style.display='block'; }
+}
+function closeAdminLogin(){ document.getElementById('adminLogin').style.display='none'; }
+function checkPin(){
+ let pin=document.getElementById('adminPin').value;
+ if(pin==adminPin){ closeAdminLogin(); document.getElementById('adminPin').value=''; openSetting(); }
+ else alert('Wrong PIN!');
+}
+function changePin(){
+ let np=document.getElementById('newPin').value;
+ if(!np){alert('Naya PIN likho');return;}
+ adminPin=np; localStorage.setItem('ladla_pin',np); alert('PIN Change Ho Gaya - Naya PIN: '+np); document.getElementById('newPin').value='';
+}
 function render(){
  document.getElementById('trendGrid').innerHTML=games.filter(g=>g.trend).map(cardHtml).join('');
  document.getElementById('allGrid').innerHTML=games.map(cardHtml).join('');
- let sel=document.getElementById('setGameSelect'); sel.innerHTML=games.map(g=>`<option value="${g.id}">${g.name}</option>`).join('');
+ document.getElementById('setGameSelect').innerHTML=games.map(g=>`<option value="${g.id}">${g.name}</option>`).join('');
+ startBanner('main');
 }
-function cardHtml(g){ return `<div class="gcard" data-name="${g.name.toLowerCase()}" data-cat="${g.cat}" data-trend="${g.trend}" onclick="openGame('${g.id}')"><div class="img ${g.cls}">${g.img}</div>${g.badge?`<span class="badge">${g.badge}</span>`:''}<b>${g.name}</b><p>${g.desc}</p><span>${g.price}</span></div>`; }
+function cardHtml(g){
+ let gi=getGameIcon(g);
+ let inner = gi ? `<img src="${gi}">` : `<span class="big">${g.icon}</span>`;
+ return `<div class="gcard" data-name="${g.name.toLowerCase()}" data-cat="${g.cat}" data-trend="${g.trend}" onclick="openGame('${g.id}')"><div class="img ${g.cls}">${inner}<span class="lbl">${g.iconName}</span></div>${g.badge?`<span class="badge">${g.badge}</span>`:''}<b>${g.name}</b><p>${g.desc}</p><span>${g.price}</span></div>`;
+}
 function filterCat(el,cat){
  document.querySelectorAll('#catTabs .tab').forEach(x=>x.classList.remove('active')); el.classList.add('active');
  document.querySelectorAll('#allGrid .gcard').forEach(c=>{
@@ -177,22 +196,33 @@ function filterCat(el,cat){
 }
 function filterGames(q){ q=q.toLowerCase(); document.querySelectorAll('.gcard').forEach(c=>{ c.style.display=c.dataset.name.includes(q)?'block':'none'; }); }
 function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('show')); document.getElementById(id).classList.add('show'); window.scrollTo(0,0); }
-function goHome(){ showPage('home'); }
+function goHome(){ showPage('home'); startBanner('main'); render(); }
 function openGame(id){
  curGame=games.find(g=>g.id==id); curPack=null;
  document.getElementById('gameTitle').innerText=curGame.name;
  document.getElementById('gameHead').innerText=curGame.name;
- document.getElementById('gameDesc').innerText=curGame.desc+' - Is Game Ki Alag Setting Hai';
- let h=''; getPacks(id).forEach((p,i)=>{ h+=`<div class="pack" onclick="selPack(this,${i})"><b>💎 ${p.n}</b><small>${curGame.name}</small><span>$${p.p}</span></div>`; });
+ document.getElementById('gameBannerTitle').innerText=curGame.name;
+ document.getElementById('gameBannerSub').innerText=curGame.iconName+' - 25K Se 200K Packs';
+ document.getElementById('gameDesc').innerText=curGame.desc+' - 25K Se 200K Packs';
+ let gi=getGameIcon(curGame);
+ document.getElementById('gameIconBig').innerHTML = gi ? `<img src="${gi}" style="width:100%;height:100%;object-fit:cover;">` : curGame.icon;
+ document.getElementById('gameIconTxt').innerText=curGame.name+' - '+curGame.iconName;
+ let h=''; getPacks(id).forEach((p,i)=>{
+  let pi=getPackIcon(id,i) || gi;
+  let iconHtml = pi ? `<img src="${pi}">` : curGame.icon;
+  h+=`<div class="pack" onclick="selPack(this,${i})"><div class="p-icon">${iconHtml}</div><span class="p-type">${curGame.iconName}</span><b>${p.n}</b><small>${curGame.name}</small><span>$${p.p}</span></div>`;
+ });
  document.getElementById('packGrid').innerHTML=h;
- showPage('gamePage');
+ showPage('gamePage'); startBanner('game');
 }
-function selPack(el,i){ document.querySelectorAll('.pack').forEach(x=>x.classList.remove('active')); el.classList.add('active'); curPack=getPacks(curGame.id)[i]; }
+function selPack(el,i){ document.querySelectorAll('.pack').forEach(x=>x.classList.remove('active')); el.classList.add('active'); curPack=getPacks(curGame.id)[i]; curPackIdx=i; }
 function goGame(){ showPage('gamePage'); }
 function goCheckout(){
  if(!curPack){alert('Pack select karo!');return;}
  let pid=document.getElementById('playerId').value; if(!pid){alert('Player ID likho!');return;}
- document.getElementById('summaryBox').innerHTML=`<div class="row"><span>Game</span><b>${curGame.name}</b></div><div class="row"><span>Pack</span><b>${curPack.n}</b></div><div class="row"><span>Player ID</span><b>${pid}</b></div><div class="row"><span>Total</span><b style="color:#ff7a00;">$${curPack.p}</b></div>`;
+ let pi=getPackIcon(curGame.id,curPackIdx) || getGameIcon(curGame);
+ let iconHtml = pi ? `<img src="${pi}" style="width:30px;height:30px;border-radius:8px;object-fit:cover;vertical-align:middle;">` : curGame.icon;
+ document.getElementById('summaryBox').innerHTML=`<div class="row"><span>Game</span><b>${curGame.name}</b></div><div class="row"><span>Currency</span><b>${iconHtml} ${curGame.iconName}</b></div><div class="row"><span>Pack</span><b>${curPack.n}</b></div><div class="row"><span>Player ID</span><b>${pid}</b></div><div class="row"><span>Total</span><b style="color:#ff7a00;">$${curPack.p}</b></div>`;
  showPage('checkout');
 }
 function placeOrder(){
@@ -203,48 +233,102 @@ function placeOrder(){
  let texts=getTexts(curGame.id);
  document.getElementById('orderId').innerText='ORD-'+Math.floor(100000+Math.random()*900000);
  document.getElementById('resText').innerText=texts[status]||texts.PENDING;
- document.getElementById('resIcon').innerText=status=='PENDING'?'⏳':status=='SUCCESS'?'✅':'💎';
+ let pi=getPackIcon(curGame.id,curPackIdx) || getGameIcon(curGame);
+ document.getElementById('resIcon').innerHTML = status=='PENDING' ? '⏳' : (pi ? `<img src="${pi}" style="width:100%;height:100%;object-fit:cover;">` : curGame.icon);
  document.getElementById('resTitle').innerText=status=='PENDING'?'Order Pending':'Order Completed!';
- document.getElementById('resDetails').innerHTML=`<div class="row"><span>Game</span><b>${curGame.name}</b></div><div class="row"><span>Pack</span><b>${curPack.n}</b></div><div class="row"><span>Player ID</span><b>${pid}</b></div><div class="row"><span>Card Name</span><b>${card}</b></div><div class="row"><span>Status</span><b>${status}</b></div><div class="row"><span>Time</span><b>${new Date().toLocaleString()}</b></div>`;
+ document.getElementById('resDetails').innerHTML=`<div class="row"><span>Game</span><b>${curGame.name}</b></div><div class="row"><span>Currency</span><b>${curGame.iconName}</b></div><div class="row"><span>Pack</span><b>${curPack.n}</b></div><div class="row"><span>Player ID</span><b>${pid}</b></div><div class="row"><span>Card Name</span><b>${card}</b></div><div class="row"><span>Status</span><b>${status}</b></div><div class="row"><span>Time</span><b>${new Date().toLocaleString()}</b></div>`;
  showPage('resultPage');
 }
-function openSetting(){ document.getElementById('setting').style.display='block'; loadGameSetting(); renderUsers(); }
-function openGameSetting(){
- if(curGame) document.getElementById('setGameSelect').value=curGame.id;
- openSetting();
+function startBanner(type){
+ let bannerEl = type=='main' ? document.getElementById('mainBanner') : document.getElementById('gameBanner');
+ let dotsEl = type=='main' ? document.getElementById('mainDots') : document.getElementById('gameDots');
+ let list = type=='main' ? getBanners('main') : getBanners('game', curGame?curGame.id:'');
+ bannerEl.querySelectorAll('img.banner-img').forEach(e=>e.remove());
+ if(list.length==0){ dotsEl.innerHTML=''; return; }
+ list.forEach((src,i)=>{ let im=document.createElement('img'); im.src=src; im.className='banner-img'+(i==0?' show':''); bannerEl.prepend(im); });
+ dotsEl.innerHTML=list.map((_,i)=>`<div class="dot ${i==0?'active':''}" onclick="jumpBanner('${type}',${i})"></div>`).join('');
+ let idx=0; if(bannerEl._timer) clearInterval(bannerEl._timer);
+ bannerEl._timer=setInterval(()=>{ idx=(idx+1)%list.length; bannerEl.querySelectorAll('img.banner-img').forEach((im,i)=>im.classList.toggle('show', i==idx)); dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i==idx)); },3000);
 }
+function jumpBanner(type,i){
+ let bannerEl = type=='main' ? document.getElementById('mainBanner') : document.getElementById('gameBanner');
+ let dotsEl = type=='main' ? document.getElementById('mainDots') : document.getElementById('gameDots');
+ bannerEl.querySelectorAll('img.banner-img').forEach((im,idx)=>im.classList.toggle('show', idx==i));
+ dotsEl.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx==i));
+}
+function uploadBanner(type, input){
+ let file=input.files[0]; if(!file) return;
+ let r=new FileReader(); r.onload=function(e){
+  let url=e.target.result;
+  if(type=='main'){ savedBanners.main.push(url); }
+  else { let gid=document.getElementById('setGameSelect').value; if(!savedBanners.games) savedBanners.games={}; if(!savedBanners.games[gid]) savedBanners.games[gid]=[]; savedBanners.games[gid].push(url); }
+  localStorage.setItem('ladla_banners',JSON.stringify(savedBanners)); alert('Banner Upload Ho Gaya!'); loadGameSetting(); startBanner(type=='main'?'main':'game');
+ }; r.readAsDataURL(file); input.value='';
+}
+function uploadGameIcon(input){
+ let file=input.files[0]; if(!file) return;
+ let gid=document.getElementById('setGameSelect').value;
+ let r=new FileReader(); r.onload=function(e){
+  if(!savedIcons.games) savedIcons.games={}; savedIcons.games[gid]=e.target.result;
+  localStorage.setItem('ladla_icons',JSON.stringify(savedIcons)); alert('Game Icon Upload Ho Gaya!'); loadGameSetting(); render();
+ }; r.readAsDataURL(file); input.value='';
+}
+function uploadPackIcon(gid, idx, input){
+ let file=input.files[0]; if(!file) return;
+ let r=new FileReader(); r.onload=function(e){
+  if(!savedIcons.packs) savedIcons.packs={}; savedIcons.packs[gid+'_'+idx]=e.target.result;
+  localStorage.setItem('ladla_icons',JSON.stringify(savedIcons)); alert('Pack Icon Upload!'); loadGameSetting(); if(curGame && curGame.id==gid) openGame(gid);
+ }; r.readAsDataURL(file); input.value='';
+}
+function clearGameIcon(){
+ let gid=document.getElementById('setGameSelect').value;
+ if(savedIcons.games) delete savedIcons.games[gid];
+ localStorage.setItem('ladla_icons',JSON.stringify(savedIcons)); loadGameSetting(); render(); alert('Icon Delete');
+}
+function openSetting(){ document.getElementById('setting').style.display='block'; loadGameSetting(); renderUsers(); }
 function closeSetting(){ document.getElementById('setting').style.display='none'; }
 function loadGameSetting(){
  let gid=document.getElementById('setGameSelect').value;
  let packs=getPacks(gid); let texts=getTexts(gid);
- let h=''; packs.forEach((p,i)=>{ h+=`<div style="display:flex;gap:6px;"><input value="${p.n}" id="epn${i}"><input type="number" value="${p.p}" id="epp${i}"></div>`; });
+ let gi=getGameIcon(games.find(g=>g.id==gid));
+ document.getElementById('gameIconPreview').innerHTML = gi ? `<img src="${gi}" style="width:70px;height:70px;object-fit:cover;border-radius:12px;"> <p style="font-size:12px;color:#22c55e;">✓ Uploaded</p>` : 'Abhi emoji show ho raha hai';
+ let h=''; packs.forEach((p,i)=>{
+  let pi=getPackIcon(gid,i);
+  h+=`<div class="pack-edit"><div style="width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#222;display:flex;align-items:center;justify-content:center;">${pi?`<img src="${pi}" style="width:100%;height:100%;object-fit:cover;">`:'📸'}</div><input value="${p.n}" id="epn${i}" style="flex:1;"><input type="number" value="${p.p}" id="epp${i}" style="width:80px;"><label style="cursor:pointer;background:#ff2a6d;padding:8px 10px;border-radius:10px;font-size:12px;font-weight:800;white-space:nowrap;">📸 ICON<input type="file" accept="image/*" style="display:none;" onchange="uploadPackIcon('${gid}',${i},this)"></label></div>`;
+ });
  document.getElementById('setPackEdit').innerHTML=h;
  document.getElementById('setTxtPending').value=texts.PENDING;
  document.getElementById('setTxtSuccess').value=texts.SUCCESS;
  document.getElementById('setTxtFilled').value=texts.FILLED;
+ document.getElementById('mainBannerList').innerHTML=(savedBanners.main||[]).map(s=>`<img src="${s}" class="banner-thumb">`).join('')||'Koi nahi';
+ document.getElementById('gameBannerList').innerHTML=((savedBanners.games&&savedBanners.games[gid])||[]).map(s=>`<img src="${s}" class="banner-thumb">`).join('')||'Koi nahi';
+}
+function addNewPack(){
+ let gid=document.getElementById('setGameSelect').value;
+ let packs=getPacks(gid); packs.push({n:'New Pack',p:100});
+ savedPacks[gid]=packs; localStorage.setItem('ladla_all_packs2',JSON.stringify(savedPacks)); loadGameSetting(); alert('Naya Pack Add!');
 }
 function saveGamePacks(){
  let gid=document.getElementById('setGameSelect').value;
  let packs=getPacks(gid);
  packs.forEach((p,i)=>{ let n=document.getElementById('epn'+i); let pr=document.getElementById('epp'+i); if(n) p.n=n.value; if(pr) p.p=pr.value; });
- savedPacks[gid]=packs; localStorage.setItem('ladla_all_packs',JSON.stringify(savedPacks)); alert(games.find(g=>g.id==gid).name+' ke packs save ho gaye!');
- if(curGame && curGame.id==gid) openGame(gid);
+ savedPacks[gid]=packs; localStorage.setItem('ladla_all_packs2',JSON.stringify(savedPacks)); alert('Packs Save!'); if(curGame && curGame.id==gid) openGame(gid);
 }
 function saveGameTexts(){
  let gid=document.getElementById('setGameSelect').value;
  savedTexts[gid]={PENDING:document.getElementById('setTxtPending').value, SUCCESS:document.getElementById('setTxtSuccess').value, FILLED:document.getElementById('setTxtFilled').value};
- localStorage.setItem('ladla_all_texts',JSON.stringify(savedTexts)); alert('Is game ka text save ho gaya!');
+ localStorage.setItem('ladla_all_texts2',JSON.stringify(savedTexts)); alert('Text Save!');
 }
 function saveUser(){
  let n=document.getElementById('setName').value, i=document.getElementById('setId').value, s=document.getElementById('setStatus').value, gid=document.getElementById('setGameSelect').value;
  if(!n||!i){alert('Name + ID likho');return;}
  let ex=users.findIndex(u=>String(u.id)==String(i) && u.game==gid);
  if(ex>=0) users[ex]={name:n,id:i,status:s,game:gid}; else users.push({name:n,id:i,status:s,game:gid});
- localStorage.setItem('ladla_all_users',JSON.stringify(users)); renderUsers(); alert('User save - '+games.find(g=>g.id==gid).name+' ke liye');
+ localStorage.setItem('ladla_all_users2',JSON.stringify(users)); renderUsers(); alert('User Save!');
 }
 function renderUsers(){
  let gid=document.getElementById('setGameSelect')?.value;
- document.getElementById('userList').innerHTML=users.filter(u=>!gid||u.game==gid).map(u=>`<div style="background:rgba(255,255,255,.07);padding:10px;border-radius:10px;margin-bottom:6px;"><span style="font-size:13px;">${u.name} - ${u.id} - ${u.status} - [${games.find(g=>g.id==u.game)?.name||u.game}]</span></div>`).join('')||'Is game ke liye koi user nahi';
+ document.getElementById('userList').innerHTML=users.filter(u=>!gid||u.game==gid).map(u=>`<div style="background:rgba(255,255,255,.07);padding:10px;border-radius:10px;margin-bottom:6px;"><span style="font-size:13px;">${u.name} - ${u.id} - ${u.status} - [${games.find(g=>g.id==u.game)?.name||u.game}]</span></div>`).join('')||'Koi user nahi';
 }
 render();
 </script>

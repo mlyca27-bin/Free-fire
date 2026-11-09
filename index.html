@@ -6,100 +6,156 @@
 <title>LADLA Topup Store</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
-body{background:#0f0f12;color:#fff}
-.top{background:#16161a;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #26262b}
-.top b{font-size:18px;letter-spacing:.5px}
-.top b span{color:#ffb800}
-.set{background:#ffb800;color:#000;border:none;padding:8px 14px;border-radius:999px;font-weight:800;cursor:pointer}
-.hero{padding:20px 16px;background:linear-gradient(135deg,#ff2a00,#ffb800);border-radius:0 0 20px 20px}
-.hero h1{font-size:26px;line-height:1.2}
-.hero p{opacity:.9;margin-top:6px;font-size:13px}
-.card-box{background:#1a1a1f;margin:14px;border-radius:16px;padding:16px;border:1px solid #2a2a30}
+body{background:#f4f5f7;color:#111}
+.top{background:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #e5e5e5}
+.top b{font-size:18px}
+.top b span{color:#ff2a00}
+.set{background:#111;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.hero{background:linear-gradient(135deg,#ff2a00,#ff7a00);padding:22px 16px;color:#fff;border-radius:0 0 20px 20px}
+.hero h1{font-size:25px;line-height:1.2}
+.hero p{opacity:.95;margin-top:6px;font-size:13px}
+.card-box{background:#fff;margin:12px;border-radius:16px;padding:16px;border:1px solid #e8e8e8}
 .card-box h2{font-size:16px;margin-bottom:12px}
-.card-box h2 span{color:#ffb800}
-input,select{width:100%;padding:13px;background:#26262b;border:1px solid #3a3a42;color:#fff;border-radius:10px;margin-bottom:10px;outline:none;font-size:15px}
-input::placeholder{color:#888}
-.btn{width:100%;background:linear-gradient(90deg,#ff2a00,#ffb800);color:#fff;border:none;padding:14px;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-height:320px;overflow-y:auto;padding:2px}
-.pack{background:#26262b;border:1.5px solid #333;border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:.15s}
-.pack.active{border-color:#ffb800;background:#2e2a1a;transform:scale(1.02)}
+.card-box h2 span{color:#ff2a00}
+input,select{width:100%;padding:13px;background:#f8f8f8;border:1px solid #ddd;color:#111;border-radius:10px;margin-bottom:10px;outline:none;font-size:15px}
+.btn{width:100%;background:#ff2a00;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-height:360px;overflow-y:auto;padding:2px}
+.pack{background:#fff;border:1.5px solid #e5e5e5;border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer}
+.pack.active{border-color:#ff2a00;background:#fff0ed}
 .pack b{font-size:18px;display:block}
-.pack small{color:#aaa;font-size:12px}
-.pack span{color:#ffb800;font-weight:800;display:block;margin-top:6px}
+.pack small{color:#777;font-size:12px}
+.pack span{color:#ff2a00;font-weight:800;display:block;margin-top:6px}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.pcard{background:#26262b;border:1.5px solid #333;border-radius:14px;padding:14px;text-align:center;cursor:pointer}
-.pcard.active{border-color:#ffb800;background:#2e2a1a}
-.pcard.golden{border-color:#ffb800;background:linear-gradient(135deg,#3a2d00,#1a1a1f)}
+.pcard{background:#fff;border:1.5px solid #e5e5e5;border-radius:14px;padding:14px;text-align:center;cursor:pointer}
+.pcard.active{border-color:#ff2a00;background:#fff0ed}
+.pcard.golden{border-color:#f5b301;background:#fff8dc}
 .pcard b{font-size:14px}
-.pcard small{color:#aaa;display:block;margin-top:4px}
-.user{background:#1e2a1e;border:1px solid #2f6b3a;border-radius:12px;padding:12px;margin-top:8px;display:none}
-.badge{display:inline-block;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800}
-.pending{background:#fff3cd;color:#856404}
-.success{background:#d4edda;color:#155724}
-.filled{background:#cce5ff;color:#004085}
-.popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99;overflow:auto;padding:16px}
-.popup-box{background:#1a1a1f;border:1px solid #333;border-radius:16px;padding:16px;max-width:430px;margin:auto}
-.close{background:#333;color:#fff;border:none;padding:11px;width:100%;border-radius:10px;margin-top:10px;cursor:pointer}
-.page2{display:none}
-.payopt{background:#26262b;border:1.5px solid #333;padding:14px;border-radius:12px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.payopt.active{border-color:#ffb800;background:#2e2a1a}
-.note{font-size:12px;color:#aaa;text-align:center;margin-top:10px;line-height:1.5}
+.pcard small{color:#777;display:block;margin-top:4px}
+.user{border-radius:14px;padding:14px;margin-top:8px;display:none;border:2px solid transparent}
+.user.pending-bg{background:#fff3cd;border-color:#ffca2c}
+.user.success-bg{background:#d1e7dd;border-color:#198754}
+.user.filled-bg{background:#cfe2ff;border-color:#0d6efd}
+.badge{display:inline-block;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:900;margin-top:6px}
+.badge.pending{background:#ffc107;color:#000}
+.badge.success{background:#198754;color:#fff}
+.badge.filled{background:#0d6efd;color:#fff}
+.popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;overflow:auto;padding:16px}
+.popup-box{background:#fff;border-radius:16px;padding:16px;max-width:430px;margin:auto}
+.close{background:#111;color:#fff;border:none;padding:11px;width:100%;border-radius:10px;margin-top:10px;cursor:pointer}
+.page2,.page3,.page4{display:none}
+.payopt{background:#f8f8f8;border:1.5px solid #e5e5e5;padding:14px;border-radius:12px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between}
+.payopt.active{border-color:#ff2a00;background:#fff0ed}
+.note{font-size:12px;color:#888;text-align:center;margin-top:10px;line-height:1.5}
+.result-box{text-align:center;padding:20px 10px}
+.big-tick{font-size:60px}
+.row{display:flex;justify-content:space-between;background:#f8f8f8;padding:12px;border-radius:10px;margin-bottom:8px;font-size:14px}
+.steps{display:flex;gap:6px;margin:12px 12px 0}
+.step{flex:1;text-align:center;font-size:11px;font-weight:800;padding:8px;background:#fff;border:1px solid #e5e5e5;border-radius:999px;color:#888}
+.step.active{background:#ff2a00;color:#fff;border-color:#ff2a00}
 </style>
 </head>
 <body>
 
+<!-- PAGE 1 - LOGIN -->
 <div id="page1">
 <div class="top"><b>LADLA <span>TOPUP</span> STORE</b><button class="set" onclick="openSetting()">⚙️ Setting</button></div>
-<div class="hero"><h1>Free Fire Diamonds<br>Fast & Secure Topup</h1><p>Enter Player ID • Select Pack • Select Card • Pay in USD</p></div>
-
+<div class="hero"><h1>Free Fire Diamonds<br>Fast & Secure Topup</h1><p>Page 1 of 4 - Login with Player ID</p></div>
+<div class="steps"><div class="step active">1 Login</div><div class="step">2 Pack</div><div class="step">3 Pay</div><div class="step">4 Result</div></div>
 <div class="card-box">
-<h2><span>01</span> Account Details</h2>
+<h2><span>01</span> Login - Player ID</h2>
 <input type="number" id="playerId" placeholder="Player ID - Ex: 1380545250" oninput="checkUser()">
-<div class="user" id="userCard"><b id="showName">-</b><p id="showId" style="color:#aaa;font-size:13px;margin:4px 0;">-</p><span id="showStatus" class="badge pending">PENDING</span></div>
-<p id="notFound" style="display:none;color:#ff6b6b;font-size:13px;margin-top:6px;">This ID is not added in Setting.</p>
+<div class="user" id="userCard">
+<b id="showName">-</b>
+<p id="showId" style="font-size:13px;color:#444;margin:4px 0;">-</p>
+<span id="showStatus" class="badge pending">PENDING</span>
+<p id="showMsg" style="font-size:12px;margin-top:8px;font-weight:700;"></p>
+</div>
+<p id="notFound" style="display:none;color:red;font-size:13px;margin-top:6px;">This ID is not added in Setting.</p>
+<button class="btn" style="margin-top:10px;" onclick="goPage2()">LOGIN & CONTINUE →</button>
+<p class="note">ID likhne ke baad hi Status dikhega - PENDING / SUCCESS / FILLED</p>
+</div>
 </div>
 
+<!-- PAGE 2 - PACK + CARD -->
+<div id="page2" class="page2">
+<div class="top"><b>← <span onclick="goPage1()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
+<div class="steps"><div class="step">1 Login</div><div class="step active">2 Pack</div><div class="step">3 Pay</div><div class="step">4 Result</div></div>
 <div class="card-box">
 <h2><span>02</span> Top-up Amount - 8 Packs</h2>
-<p style="font-size:12px;color:#888;margin-bottom:10px;">Scroll down - 25K to 200K</p>
+<div class="user" id="userCard2" style="display:none;">
+<b id="showName2">-</b><p id="showId2" style="font-size:13px;color:#444;margin:4px 0;">-</p>
+<span id="showStatus2" class="badge pending">PENDING</span>
+<p id="showMsg2" style="font-size:12px;margin-top:8px;font-weight:700;"></p>
+</div>
+<p style="font-size:12px;color:#888;margin:10px 0;">Scroll - 25K to 200K</p>
 <div class="grid" id="packGrid"></div>
 </div>
-
 <div class="card-box">
 <h2><span>03</span> Payment Method - Select Card</h2>
 <div class="cards" id="cardGrid"></div>
-<button class="btn" style="margin-top:14px;" onclick="goPage2()">CONTINUE →</button>
-<p class="note">LADLA Topup Store - Your Own Store. This is not Garena Official Store.</p>
+<button class="btn" style="margin-top:14px;" onclick="goPage3()">CONTINUE TO PAYMENT →</button>
 </div>
 </div>
 
-<div id="page2" class="page2">
-<div class="top"><b>← <span onclick="goPage1()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
+<!-- PAGE 3 - PAYMENT -->
+<div id="page3" class="page3">
+<div class="top"><b>← <span onclick="goPage2()" style="cursor:pointer;">Back</span></b><b>LADLA STORE</b></div>
+<div class="steps"><div class="step">1 Login</div><div class="step">2 Pack</div><div class="step active">3 Pay</div><div class="step">4 Result</div></div>
 <div class="card-box">
 <h2><span>💳</span> Payment - Card Only - USD</h2>
-<p id="summary" style="color:#ccc;font-size:14px;margin-bottom:12px;"></p>
-<div style="display:flex;justify-content:space-between;background:#26262b;padding:14px;border-radius:12px;margin-bottom:14px;"><span>Total Payment</span><b id="totalUSD" style="color:#ffb800;font-size:18px;">$0.00 USD</b></div>
+<div class="user" id="userCard3" style="display:none;">
+<b id="showName3">-</b><p id="showId3" style="font-size:13px;color:#444;margin:4px 0;">-</p>
+<span id="showStatus3" class="badge pending">PENDING</span>
+<p id="showMsg3" style="font-size:12px;margin-top:8px;font-weight:700;"></p>
+</div>
+<p id="summary" style="color:#555;font-size:14px;margin:12px 0;"></p>
+<div style="display:flex;justify-content:space-between;background:#f8f8f8;padding:14px;border-radius:12px;margin-bottom:14px;"><span>Total Payment</span><b id="totalUSD" style="color:#ff2a00;font-size:18px;">$0.00 USD</b></div>
 <h3 style="font-size:14px;margin-bottom:8px;">Choose Card Network</h3>
 <div class="payopt" onclick="selPay(this)"><span>💳 Visa</span><span>›</span></div>
 <div class="payopt" onclick="selPay(this)"><span>💳 Mastercard</span><span>›</span></div>
 <div class="payopt" onclick="selPay(this)"><span>💳 American Express</span><span>›</span></div>
 <div class="payopt" onclick="selPay(this)"><span>💳 Discover</span><span>›</span></div>
 <button class="btn" onclick="payNow()">PAY $ IN USD - SECURE CHECKOUT</button>
-<p id="payResult" style="text-align:center;margin-top:12px;font-weight:700;color:#7CFC00;"></p>
-<p class="note">You will be redirected to secure payment gateway. We never ask for Card Number / CVV on this page.<br>LADLA Topup Store - Independent Store</p>
+<p class="note">You will be redirected to secure payment gateway. We never ask for Card Number / CVV.</p>
+</div>
+</div>
+
+<!-- PAGE 4 - RESULT -->
+<div id="page4" class="page4">
+<div class="top"><b>LADLA STORE</b><b onclick="goPage1()" style="cursor:pointer;">Home</b></div>
+<div class="steps"><div class="step">1 Login</div><div class="step">2 Pack</div><div class="step">3 Pay</div><div class="step active">4 Result</div></div>
+<div class="card-box">
+<div class="result-box">
+<div class="big-tick">✅</div>
+<h2 style="font-size:22px;margin:10px 0 6px;">Payment Successful</h2>
+<p style="color:#666;font-size:14px;">Your order has been created successfully.</p>
+</div>
+<div class="row"><span>Order ID</span><b id="orderId">-</b></div>
+<div class="row"><span>Player ID</span><b id="rPlayer">-</b></div>
+<div class="row"><span>Username</span><b id="rName">-</b></div>
+<div class="row"><span>Pack</span><b id="rPack">-</b></div>
+<div class="row"><span>Card</span><b id="rCard">-</b></div>
+<div class="row"><span>Amount Paid</span><b id="rAmount" style="color:#ff2a00;">-</b></div>
+<div class="row"><span>Transfer Status</span><b id="rStatus">-</b></div>
+<div class="user" id="userCard4" style="display:block;text-align:center;">
+<span id="showStatus4" class="badge pending">PENDING</span>
+<p id="showMsg4" style="font-size:13px;margin-top:8px;font-weight:700;"></p>
+</div>
+<button class="btn" style="margin-top:12px;" onclick="goPage1()">BACK TO HOME</button>
+<p class="note">LADLA Topup Store - Independent Store. Not Garena Official.</p>
 </div>
 </div>
 
 <div class="popup" id="popup">
 <div class="popup-box">
 <h3>⚙️ Admin Setting</h3>
-<p style="font-size:12px;color:#aaa;margin:6px 0 14px;">Add User / Change Status / Edit Pack Price</p>
+<p style="font-size:12px;color:#777;margin:6px 0 14px;">Yahan se Status badlo - PENDING / SUCCESS / FILLED</p>
 <input id="newName" placeholder="Username">
 <input id="newId" placeholder="Player ID">
 <select id="newStatus"><option value="PENDING">PENDING</option><option value="SUCCESS">SUCCESS</option><option value="FILLED">FILLED</option></select>
 <button class="btn" onclick="addUser()">+ ADD USER</button>
 <div id="userList" style="margin-top:12px;"></div>
-<hr style="border-color:#333;margin:16px 0;">
+<hr style="margin:16px 0;">
 <h4 style="margin-bottom:8px;">Pack Prices (USD)</h4>
 <div id="packEdit"></div>
 <button class="btn" style="margin-top:8px;" onclick="savePacks()">SAVE PACKS</button>
@@ -116,7 +172,7 @@ let packs = JSON.parse(localStorage.getItem('ladla_packs')) || [
 let cards = [
  {name:'Standard Card', type:'normal'}, {name:'Classic Card', type:'normal'}, {name:'Plus Card', type:'normal'}, {name:'GOLDEN VIP Card', type:'golden'}
 ];
-let selPack=null, selCardName=null;
+let selPack=null, selCardName=null, currentUser=null;
 function renderPacks(){
  let h='';
  packs.forEach((p,i)=>{ h+=`<div class="pack" onclick="selectPack(this,${i})"><b>💎 ${p.d}</b><small>Diamonds</small><span>$${p.usd} USD</span></div>`; });
@@ -136,13 +192,72 @@ function savePacks(){ packs.forEach((p,i)=>{ p.d=document.getElementById('pd'+i)
 function openSetting(){ document.getElementById('popup').style.display='block'; showList(); }
 function closeSetting(){ document.getElementById('popup').style.display='none'; }
 function addUser(){ let n=document.getElementById('newName').value.trim(), i=document.getElementById('newId').value.trim(), s=document.getElementById('newStatus').value; if(!n||!i){alert('Dono likho!');return;} users.push({name:n,id:i,status:s}); localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); alert('Added!'); }
-function showList(){ let h=''; users.forEach((u,idx)=>{ h+=`<div style="background:#26262b;padding:10px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;"><b>${u.name}</b> - ${u.id} - ${u.status}</span><button onclick="changeStatus(${idx})" style="background:#ffb800;border:none;padding:5px 9px;border-radius:6px;font-weight:700;">Status</button></div>`; }); document.getElementById('userList').innerHTML=h; }
+function showList(){ let h=''; users.forEach((u,idx)=>{ h+=`<div style="background:#f8f8f8;padding:10px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;"><b>${u.name}</b> - ${u.id} - ${u.status}</span><button onclick="changeStatus(${idx})" style="background:#111;color:#fff;border:none;padding:5px 9px;border-radius:6px;font-weight:700;">Status</button></div>`; }); document.getElementById('userList').innerHTML=h; }
 function changeStatus(idx){ let s=prompt('Status: PENDING / SUCCESS / FILLED', users[idx].status); if(s){ users[idx].status=s.toUpperCase(); localStorage.setItem('ladla_users',JSON.stringify(users)); showList(); checkUser(); } }
-function checkUser(){ let id=document.getElementById('playerId').value.trim(); let f=users.find(u=>u.id==id); if(f){ document.getElementById('userCard').style.display='block'; document.getElementById('notFound').style.display='none'; document.getElementById('showName').innerText='Username: '+f.name; document.getElementById('showId').innerText='Player ID: '+f.id; let st=document.getElementById('showStatus'); st.innerText=f.status; st.className='badge '+(f.status=='PENDING'?'pending':f.status=='SUCCESS'?'success':'filled'); } else { document.getElementById('userCard').style.display='none'; if(id.length>5) document.getElementById('notFound').style.display='block'; } }
-function goPage2(){ let id=document.getElementById('playerId').value; if(!id){alert('Player ID likho!');return;} if(!selPack){alert('Pack select karo!');return;} if(!selCardName){alert('Card select karo!');return;} document.getElementById('page1').style.display='none'; document.getElementById('page2').style.display='block'; document.getElementById('summary').innerText=`Pack: ${selPack.d} Diamonds | Card: ${selCardName} | Player: ${id}`; document.getElementById('totalUSD').innerText='$'+selPack.usd+' USD'; }
-function goPage1(){ document.getElementById('page2').style.display='none'; document.getElementById('page1').style.display='block'; }
+function applyStatus(cardEl, badgeEl, msgEl, status){
+ cardEl.classList.remove('pending-bg','success-bg','filled-bg');
+ if(status=='PENDING'){ badgeEl.innerText='PENDING'; badgeEl.className='badge pending'; cardEl.classList.add('pending-bg'); msgEl.innerText='⏳ Order Pending hai - Thora wait karo'; msgEl.style.color='#856404'; }
+ else if(status=='SUCCESS'){ badgeEl.innerText='SUCCESS'; badgeEl.className='badge success'; cardEl.classList.add('success-bg'); msgEl.innerText='✅ Success - Diamonds Transfer Ho Gaye'; msgEl.style.color='#0f5132'; }
+ else { badgeEl.innerText='FILLED'; badgeEl.className='badge filled'; cardEl.classList.add('filled-bg'); msgEl.innerText='💎 FILLED - Account me Diamonds Aa Gaye'; msgEl.style.color='#084298'; }
+}
+function checkUser(){
+ let id=document.getElementById('playerId').value.trim();
+ let f=users.find(u=>u.id==id);
+ currentUser=f||null;
+ let card=document.getElementById('userCard');
+ if(f){
+  card.style.display='block';
+  document.getElementById('notFound').style.display='none';
+  document.getElementById('showName').innerText='Username: '+f.name;
+  document.getElementById('showId').innerText='Player ID: '+f.id;
+  applyStatus(card, document.getElementById('showStatus'), document.getElementById('showMsg'), f.status);
+ } else {
+  card.style.display='none';
+  if(id.length>5) document.getElementById('notFound').style.display='block';
+ }
+}
+function hideAll(){ ['page1','page2','page3','page4'].forEach(id=>document.getElementById(id).style.display='none'); }
+function goPage1(){ hideAll(); document.getElementById('page1').style.display='block'; }
+function goPage2(){
+ let id=document.getElementById('playerId').value; if(!id){alert('Player ID likho!');return;}
+ hideAll(); document.getElementById('page2').style.display='block';
+ if(currentUser){
+  let c2=document.getElementById('userCard2'); c2.style.display='block';
+  document.getElementById('showName2').innerText='Username: '+currentUser.name;
+  document.getElementById('showId2').innerText='Player ID: '+currentUser.id;
+  applyStatus(c2, document.getElementById('showStatus2'), document.getElementById('showMsg2'), currentUser.status);
+ }
+}
+function goPage3(){
+ if(!selPack){alert('Pack select karo!');return;} if(!selCardName){alert('Card select karo!');return;}
+ hideAll(); document.getElementById('page3').style.display='block';
+ let id=document.getElementById('playerId').value;
+ document.getElementById('summary').innerText=`Pack: ${selPack.d} Diamonds | Card: ${selCardName} | Player: ${id}`;
+ document.getElementById('totalUSD').innerText='$'+selPack.usd+' USD';
+ if(currentUser){
+  let c3=document.getElementById('userCard3'); c3.style.display='block';
+  document.getElementById('showName3').innerText='Username: '+currentUser.name;
+  document.getElementById('showId3').innerText='Player ID: '+currentUser.id;
+  applyStatus(c3, document.getElementById('showStatus3'), document.getElementById('showMsg3'), currentUser.status);
+ }
+}
 function selPay(el){ document.querySelectorAll('.payopt').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
-function payNow(){ document.getElementById('payResult').innerText='✅ Order Created - Check Status in Setting. You will be redirected to secure gateway.'; }
+function payNow(){
+ let id=document.getElementById('playerId').value;
+ let f=currentUser || users.find(u=>u.id==id);
+ hideAll(); document.getElementById('page4').style.display='block';
+ document.getElementById('orderId').innerText='LADLA-'+Math.floor(100000+Math.random()*900000);
+ document.getElementById('rPlayer').innerText=id;
+ document.getElementById('rName').innerText=f?f.name:'-';
+ document.getElementById('rPack').innerText=selPack.d+' Diamonds';
+ document.getElementById('rCard').innerText=selCardName;
+ document.getElementById('rAmount').innerText='$'+selPack.usd+' USD';
+ if(f){
+  document.getElementById('rStatus').innerText=f.status+' - Processing';
+  let c4=document.getElementById('userCard4');
+  applyStatus(c4, document.getElementById('showStatus4'), document.getElementById('showMsg4'), f.status);
+ }
+}
 renderPacks(); renderCards(); showList();
 </script>
 </body>
